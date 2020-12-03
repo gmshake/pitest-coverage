@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.example.pitest</groupId>
+	<artifactId>pitest-coverage</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter</artifactId>
+			<version>5.7.0</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.pitest</groupId>
+				<artifactId>pitest-maven</artifactId>
+				<version>1.5.2</version>
+				<configuration>
+					<targetClasses>
+						<param>com.example.pitest.**</param>
+					</targetClasses>
+					<targetTests>
+						<param>com.example.pitest.**</param>
+					</targetTests>
+					<excludedClasses>
+						<!--
+						<param>com.example.pitest.Foo</param>
+						-->
+						<!--
+						It is ugly to exclude the created additional synthetic class
+						<param>com.example.pitest.Foo$1</param>
+						-->
+					</excludedClasses>
+					<mutators>
+						<mutator>DEFAULTS</mutator>
+					</mutators>
+					<coverageThreshold>100</coverageThreshold>
+					<failWhenNoMutations>false</failWhenNoMutations>
+				</configuration>
+				<executions>
+					<execution>
+						<id>mutation-test</id>
+						<goals>
+							<goal>mutationCoverage</goal>
+						</goals>
+					</execution>
+				</executions>
+				<dependencies>
+					<dependency>
+						<groupId>org.pitest</groupId>
+						<artifactId>pitest-junit5-plugin</artifactId>
+						<version>0.12</version>
+					</dependency>
+				</dependencies>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>

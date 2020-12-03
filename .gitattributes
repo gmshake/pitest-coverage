@@ -1,0 +1,10 @@
+* text=auto
+
+*.java	text
+*.md	text
+*.properties	text
+*.sh	text
+*.txt	text
+*.xml	text
+*.yaml	text
+*.yml	text
